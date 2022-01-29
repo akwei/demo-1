@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  mvc:
+    pathmatch:
+      # https://stackoverflow.com/questions/40241843/failed-to-start-bean-documentationpluginsbootstrapper-in-spring-data-rest
+      matching-strategy: ant_path_matcher
+  # https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper
+  jackson:
+    default-property-inclusion: non_null
+logging:
+  pattern:
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+  level:
+    root: info
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        requestInterceptors:
+          -
+
+jwt:
+  private.key: classpath:app.key
+  public.key: classpath:app.pub
