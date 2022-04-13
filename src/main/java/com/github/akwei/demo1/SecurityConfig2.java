@@ -41,7 +41,6 @@ public class SecurityConfig2 {
             "/session",
             "/session/**",
     };
-
     @Value("${jwt.public.key}")
     RSAPublicKey key;
 
@@ -72,7 +71,7 @@ public class SecurityConfig2 {
                 .csrf().disable()
 //                .csrf((csrf) -> csrf.ignoringAntMatchers("/token"))
                 .httpBasic(Customizer.withDefaults())
-                .addFilterAfter(new TokenFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new TokenFilter(AUTH_WHITELIST), BasicAuthenticationFilter.class)
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
                 .exceptionHandling((exceptions) -> exceptions
