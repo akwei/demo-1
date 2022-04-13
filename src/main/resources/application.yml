@@ -5,9 +5,20 @@ spring:
     pathmatch:
       # https://stackoverflow.com/questions/40241843/failed-to-start-bean-documentationpluginsbootstrapper-in-spring-data-rest
       matching-strategy: ant_path_matcher
-  # https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper
+  #  # https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper
   jackson:
     default-property-inclusion: non_null
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:23306/db_demo?useUnicode=true&characterEncoding=utf-8&autoReconnectForPools=true&autoReconnect=true
+    username: akwei
+    password: asdasd
+    hikari:
+      minimum-idle: 80
+      maximum-pool-size: 100
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
 logging:
   pattern:
     file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
